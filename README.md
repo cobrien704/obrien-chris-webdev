@@ -1,8 +1,15 @@
-# web-dev-template
+CS 5610 - Web Development
+======
 
-1. git clone https://github.com/jannunzi/web-dev-template.git
-1. cd web-dev-template
-1. npm install
-1. mongod
-1. node server.js
-1. browse to localhost:3000
+Deployment
+------
+The app is hosted using heroku. Pushes to master are automatically deployed. The app can be found [here](https://obrien-chris-webdev.herokuapp.com).
+
+Developing Locally
+-----
+Here's how to get up an running on your machine,
+ 1. `git clone https://github.com/cobrien704/obrien-chris-webdev.git`  
+ 2. `cd obrien-chris-webdev`
+ 3. `npm install`
+ 4. `node server.js`
+ 5. Open browser and visit localhost:3000
