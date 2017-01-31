@@ -3,5 +3,28 @@ input.form-control {
 }
 
 body {
-    padding-top: 36px;
+    padding-top: 60px;
+}
+
+nav {
+    background-color: lightgray;
+}
+
+.top-buffer {
+    margin-top: 30px;
+}
+
+.widget {
+    z-index: 0;
+    padding-bottom: 8px;
+}
+
+.widget-controls {
+    position: absolute;
+    right: 0;
+    margin-right: 15px;
+    border-radius: 0 0 0 10px;
+    background-color: lightgrey;
+    z-index: 2;
+    padding: 5px;
 }
