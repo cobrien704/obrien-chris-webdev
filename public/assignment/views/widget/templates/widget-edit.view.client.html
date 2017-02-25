@@ -1,0 +1,82 @@
+<nav class="navbar navbar-normal navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-text pull-left">
+            <a class="navbar-link" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" >
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+        </div>
+        <div class="navbar-text pull-right">
+            <a class="navbar-link" ng-click="model.updateWidget(model.widget)">
+                    <span class="glyphicon glyphicon-ok">
+                    </span>
+            </a>
+        </div>
+        <div class="navbar-header">
+            <a class="navbar-brand">
+                Widget Edit
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    {{model}}
+    <form>
+        <div ng-switch="model.widget.widgetType">
+            <div ng-switch-when="HEADING">
+                <div class="form-group">
+                    <label for="heading-text">Text</label>
+                    <input ng-model="model.widget.text"
+                           type="text" class="form-control" id="heading-text" placeholder="My New Blog">
+                </div>
+                <div class="form-group">
+                    <label for="heading-size">Size</label>
+                    <input ng-model="model.widget.size"
+                           type="number" class="form-control" id="heading-size" placeholder="1" min="1" max="6">
+                </div>
+            </div>
+            <div ng-switch-when="IMAGE">
+                <div class="form-group">
+                    <label for="image-width">Width</label>
+                    <input ng-model="model.widget.text"
+                           type="text" class="form-control" id="image-width" placeholder="100">
+                </div>
+                <div class="form-group">
+                    <label for="image-url">Image URL</label>
+                    <input ng-model="model.widget.url"
+                           type="text" class="form-control" id="image-url">
+                </div>
+            </div>
+            <div ng-switch-when="YOUTUBE">
+                <div class="form-group">
+                    <label for="youtube-width">Width</label>
+                    <input ng-model="model.widget.text"
+                           type="text" class="form-control" id="youtube-width" placeholder="100">
+                </div>
+                <div class="form-group">
+                    <label for="youtube-url">Youtube URL</label>
+                    <input ng-model="model.widget.url"
+                           type="text" class="form-control" id="youtube-url">
+                </div>
+            </div>
+            <div ng-switch-when="HTML">
+                <div class="form-group">
+                    <label for="html-text">HTML Text</label>
+                    <input ng-model="model.widget.size"
+                           type="text" class="form-control" id="html-text">
+                </div>
+            </div>
+        </div>
+    </form>
+    <a class="btn btn-block btn-danger" ng-click="model.deleteWidget(model.widget._id)">Delete</a>
+</div>
+
+<nav class="navbar navbar-normal navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-text pull-right">
+            <a href="#/user:uid">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </div>
+    </div>
+</nav>
