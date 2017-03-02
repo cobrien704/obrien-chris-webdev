@@ -10,15 +10,24 @@
         vm.pageId = $routeParams['pid'];
 
         function init() {
-            vm.widgets = WidgetService.findWidgetsByPageId(vm.pageId);
+            var promise = WidgetService.findWidgetsByPageId(vm.pageId);
+            promise.success(function(widgets) {
+                vm.widgets = widgets;
+            });
         }
         init();
 
         vm.createWidget = createWidget;
 
         function createWidget(type) {
-            var wid = WidgetService.createWidget(vm.pageId, type.toUpperCase());
-            $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/" + wid);
+            var createWidgetPromise = WidgetService.createWidget(vm.pageId, type);
+            createWidgetPromise.success(function(widget) {
+                $location.url("/user/" + vm.userId +
+                    "/website/" + vm.websiteId +
+                    "/page/" + vm.pageId +
+                    "/widget/" + widget._id);
+            })
+
         }
     }
 })();

@@ -10,8 +10,15 @@
         vm.pageId = $routeParams['pid'];
 
         function init() {
-            vm.pages = PageService.findPageByWebsiteId(vm.websiteId);
-            vm.page = PageService.findPageById(vm.pageId);
+            var pagesPromise = PageService.findPageByWebsiteId(vm.websiteId);
+            pagesPromise.success(function(pages) {
+                vm.pages = pages;
+            });
+
+            var pageEditPromise = PageService.findPageById(vm.pageId);
+            pageEditPromise.success(function(page) {
+                vm.page = page;
+            })
         }
         init();
 
@@ -19,13 +26,17 @@
         vm.updatePage = updatePage;
 
         function deletePage() {
-            PageService.deletePage(vm.pageId);
-            $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+            var deletePagePromise = PageService.deletePage(vm.pageId);
+            deletePagePromise.success(function() {
+                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+            });
         }
 
         function updatePage(newPage) {
-            PageService.updatePage(vm.pageId, newPage);
-            $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+            var updatePagePromise = PageService.updatePage(vm.pageId, newPage);
+            updatePagePromise.success(function() {
+                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+            });
         }
     }
 })();

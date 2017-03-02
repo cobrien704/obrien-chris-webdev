@@ -8,14 +8,12 @@
         vm.register = register;
 
         function register(user) {
-            var newUser = UserService.create(user);
-
-            if (newUser == null) {
+            var promise = UserService.createUser(user);
+            promise.success(function (user) {
+                if (user) $location.url('/user/' + user._id);
+            }).error(function (error) {
                 vm.error("User already exists.");
-            }
-            else {
-                $location.url("/profile/", newUser._id);
-            }
+            });
         }
     }
 })();
