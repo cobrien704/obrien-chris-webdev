@@ -27,7 +27,6 @@
                     "/page/" + vm.pageId +
                     "/widget/" + widget._id);
             })
-
         }
     }
 })();
