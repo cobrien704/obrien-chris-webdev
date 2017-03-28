@@ -1,7 +1,10 @@
 <form>
     <div class="form-group">
-        <label for="html-text">HTML Text</label>
-        <input ng-model="model.widget.text"
-               type="text" class="form-control" id="html-text">
+        <div ng-model="model.widget.text"
+             text-angular
+             ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
+        ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+        ['indent','outdent'],['html']]">
+        </div>
     </div>
 </form>

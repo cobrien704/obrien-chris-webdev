@@ -20,14 +20,17 @@
         vm.createWidget = createWidget;
 
         function createWidget(type) {
-            var createWidgetPromise = WidgetService.createWidget(vm.pageId, type);
-            createWidgetPromise.success(function(widget) {
+            var widget = {
+                'type': type
+            };
+
+            var createWidgetPromise = WidgetService.createWidget(vm.pageId, widget);
+            createWidgetPromise.success(function (widget) {
                 $location.url("/user/" + vm.userId +
                     "/website/" + vm.websiteId +
                     "/page/" + vm.pageId +
                     "/widget/" + widget._id);
-            })
-
+            });
         }
     }
 })();
