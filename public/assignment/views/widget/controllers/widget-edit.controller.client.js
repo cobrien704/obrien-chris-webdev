@@ -21,6 +21,7 @@
         vm.deleteWidget = deleteWidget;
         vm.updateWidget = updateWidget;
         vm.getEditorTemplateUrl = getEditorTemplateUrl;
+        vm.toSearch = toSearch;
 
         function getEditorTemplateUrl(type) {
             return 'views/widgets/templates/editors/widget-' + type.toLowerCase() + '-editor.view.client.html';
@@ -40,8 +41,9 @@
             });
         }
 
-        function flickrSearch() {
-            console.log("hello");
+        function toSearch() {
+            $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/" +
+                vm.widgetId + "/flickr-search");
         }
     }
 })();

@@ -69,5 +69,10 @@
                 controller: "WidgetEditController",
                 controllerAs: "model"
             })
+            .when('/user/:uid/website/:wid/page/:pid/widget/:wgid/flickr-search', {
+                templateUrl: "views/widget/templates/widget-editor/widget-flickr-search.view.client.html",
+                controller: "FlickrImageSearchController",
+                controllerAs: "model"
+            })
     }
 })();
