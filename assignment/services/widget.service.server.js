@@ -7,11 +7,11 @@ module.exports = function(app, model) {
 
     app.post("/api/page/:pageId/widget", createWidget);
     app.get("/api/page/:pageId/widget", findAllWidgetsForPage);
-    app.put("/api/page/:pageId/widget", updateWidgetOrdering);
     app.get("/api/widget/:widgetId", findWidgetById);
     app.put("/api/widget/:widgetId", updateWidget);
     app.delete("/api/widget/:widgetId", deleteWidget);
     app.post ("/api/upload", upload.single('myFile'), uploadImage);
+    app.put('/api/page/:pageId/widget', reorderWidget);
 
     function createWidget(req, res) {
         var pageId = req.params['pageId'];
@@ -45,14 +45,6 @@ module.exports = function(app, model) {
             }, function () {
                res.sendStatus(500)
             });
-    }
-
-    function updateWidgetOrdering(req, res) {
-        var pageId = req.params['pageId'];
-        var initialIndex = req.query['initial'];
-        var finalIndex = req.query['final'];
-
-        widgets.splice(finalIndex, 0, widgets.splice(initialIndex, 1)[0]);
     }
 
     function findWidgetById(req, res) {
@@ -134,5 +126,23 @@ module.exports = function(app, model) {
             }, function () {
                 res.sendStatus(500);
             });
+    }
+
+    function reorderWidget(req, res) {
+        var pageId = req.params['pageId'];
+        var initial = req.query['initial'];
+        var final = req.query['final'];
+
+        if (!isNaN(initial) && !isNaN(final)) {
+            pageModel
+                .reorderWidgets(pageId, initial, final)
+                .then(function () {
+                    res.sendStatus(200);
+            }, function () {
+                res.sendStatus(500);
+            });
+        } else {
+            res.status(400).send('Initial and/or final index not provided');
+        }
     }
 };

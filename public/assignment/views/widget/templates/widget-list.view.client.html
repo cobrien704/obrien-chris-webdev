@@ -19,37 +19,7 @@
     </div>
 </nav>
 
-<div class="container-fluid" ado-sortable="">
-    <div ng-repeat="widget in model.widgets">
-        <div class="widget">
-            <div class="widget-controls">
-                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
-                      <span class="glyphicon glyphicon-cog"></span>
-                </a>
-                <a href="#">
-                      <span class="glyphicon glyphicon-menu-hamburger"></span>
-                </a>
-            </div>
-            <div ng-switch="widget.type">
-                <div ng-switch-when="HEADER">
-                    <ng-include src="'views/widget/templates/widget-heading.view.client.html'"></ng-include>
-                </div>
-                <div ng-switch-when="IMAGE">
-                    <ng-include src="'views/widget/templates/widget-image.view.client.html'"></ng-include>
-                </div>
-                <div ng-switch-when="YOUTUBE" class="youtube-widget">
-                    <ng-include src="'views/widget/templates/widget-youtube.view.client.html'"></ng-include>
-                </div>
-                <div ng-switch-when="HTML">
-                    <ng-include src="'views/widget/templates/widget-html.view.client.html'"></ng-include>
-                </div>
-                <div ng-switch-when="TEXT">
-                    <ng-include src="'views/widget/templates/widget-text.view.client.html'"></ng-include>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<skd-sortable-widgets></skd-sortable-widgets>
 
 <nav class="navbar navbar-normal navbar-fixed-bottom">
     <div class="container-fluid">

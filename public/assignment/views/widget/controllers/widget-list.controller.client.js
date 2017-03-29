@@ -19,6 +19,7 @@
         vm.trustUrl = trustUrl;
         vm.getTrustHtml = getTrustHtml;
         vm.getWidgetTemplateUrl = getWidgetTemplateUrl;
+        vm.reorderWidget = reorderWidget;
 
         function getWidgetTemplateUrl(type) {
             return 'views/widgets/templates/widget-' + type + '.view.client.html';
@@ -30,6 +31,12 @@
 
         function trustUrl(url) {
             return $sce.trustAsResourceUrl(url);
+        }
+
+        function reorderWidget(initial, final) {
+            if (initial !== final) {
+                return WidgetService.reorderWidget(vm.pageId, initial, final);
+            }
         }
     }
 })();

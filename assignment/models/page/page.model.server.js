@@ -17,7 +17,6 @@ module.exports = function () {
 
     function createPage(websiteId, page) {
         page._website = websiteId;
-        console.log(page);
         return PageModel.create(page);
     }
 
@@ -38,10 +37,12 @@ module.exports = function () {
     }
 
     function reorderWidgets(pageId, start, end) {
-        return PageModel.findById(pageId).then(function (page) {
-            page.widgets.splice(end, 0, page.widgets.splice(start, 1)[0]);
-            page.markModified('widgets');
-            page.save();
-        });
+        return PageModel
+            .findById(pageId)
+            .then(function (page) {
+                page.widgets.splice(end, 0, page.widgets.splice(start, 1)[0]);
+                page.markModified('widgets');
+                page.save();
+            });
     }
 };

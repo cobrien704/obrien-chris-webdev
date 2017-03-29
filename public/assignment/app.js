@@ -1,4 +1,4 @@
 (function () {
     angular
-        .module("WebAppMaker", ["ngRoute", "textAngular"]);
+        .module("WebAppMaker", ["ngRoute", "skdDirectives", "textAngular"]);
 })();

@@ -13,14 +13,11 @@
             vm.websiteId = $routeParams['wid'];
             vm.pageId = $routeParams['pid'];
             vm.widgetId = $routeParams['wgid'];
-
-            console.log(vm);
         }
 
         init();
 
         function searchPhotos(searchTerm) {
-            console.log(searchTerm);
             FlickrService.searchPhotos(searchTerm).then(function (response) {
                 var data = response.data.replace("jsonFlickrApi(", "");
                 data = data.substring(0, data.length - 1);
