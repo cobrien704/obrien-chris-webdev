@@ -17,7 +17,6 @@ module.exports = function () {
 
     function createPage(websiteId, page) {
         page._website = websiteId;
-        console.log(page);
         return PageModel.create(page);
     }
 
